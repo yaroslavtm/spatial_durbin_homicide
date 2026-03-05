@@ -6,7 +6,7 @@ library(plm)
 library(stargazer)
 
 # 1. Загрузка панельных данных
-df <- read_excel("ваш/путь/Данные.xlsx")
+df <- read_excel("ваш/путь/data.xlsx")
 # Переименование столбцов
 colnames(df) <- c("year", "fips", "abbr", "state", "homicide", "population",
                   "income_nominal", "homicide_rate", "ethanol", "unemployment",
@@ -23,7 +23,7 @@ cat("Штаты:", length(unique(df$state)), "\n")
 cat("Годы:", min(df$year), "-", max(df$year), "\n")
 
 # 2. Загрузка шейпфайла и построение матрицы Queen
-states_sf <- st_read("C:/Users/Downloads/cb_2018_us_state_500k/cb_2018_us_state_500k.shp", quiet = TRUE)
+states_sf <- st_read("ваш/путь/cb_2018_us_state_500k/cb_2018_us_state_500k.shp", quiet = TRUE)
 
 # Фильтрация: 48 смежных штатов
 exclude_fips <- c("02", "15", "11", "60", "66", "69", "72", "78")
@@ -99,4 +99,5 @@ print(round(cor_matrix, 3))
 # Сохраняем W и отсортированные данные для следующих скриптов
 save(df, W_listw, w_queen, states48, file = "ваш/путь/workspace_01.RData")
 cat("\nРабочее пространство сохранено в workspace_01.RData\n")
+
 
